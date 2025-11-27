@@ -1,28 +1,21 @@
 #include <iostream>
-#include <string>
+#include <cctype>
 
 int main(int ac, char **av)
 {
-    if (ac < 2)
+    if(ac > 1)
     {
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-        return 0;
-    }
-
-    int i = 1;
-    while (i < ac)
-    {
-        int j = 0;
-        while (av[i][j])
+        for(int i = 1; i < ac; i++)
         {
-            av[i][j] = std::toupper(static_cast<unsigned char>(av[i][j]));
-            j++;
+            for(int j = 0; av[i][j]; j++)
+                av[i][j] = std::toupper(static_cast<unsigned char>(av[i][j]));
+            std::cout << av[i];
+            if (i + 1 < ac)
+                std::cout << " ";
         }
-        std::cout << av[i];
-        if (i + 1 < ac)
-            std::cout << " ";
-        i++;
+        std::cout << std::endl;
     }
-    std::cout << std::endl;
+    else
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
     return 0;
 }
