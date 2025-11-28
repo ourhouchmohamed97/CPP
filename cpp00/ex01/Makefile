@@ -18,7 +18,8 @@ RM = rm -rf
 
 HEADER = PhoneBook.hpp
 SRC = PhoneBook.cpp \
-		Contact.cpp
+		Contact.cpp \
+		main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
