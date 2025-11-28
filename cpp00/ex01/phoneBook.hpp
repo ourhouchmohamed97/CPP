@@ -8,7 +8,7 @@ class PhoneBook {
     public:
         PhoneBook();
     private:
-        Contact contacts[8];
+        // Contact contacts[8];
         int     nextContact;
         int     countContact;
 };
