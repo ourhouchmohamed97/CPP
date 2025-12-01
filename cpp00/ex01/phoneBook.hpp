@@ -3,15 +3,8 @@
 #define PHONE_BOOK_H
 
 #include <iostream>
-
-class PhoneBook {
-    public:
-        PhoneBook();
-    private:
-        // Contact contacts[8];
-        int     nextContact;
-        int     countContact;
-};
+#include <string>
+#include <iomanip>  // for std::setw
 
 class Contact {
     // fields
@@ -38,5 +31,24 @@ class Contact {
     std::string getPhoneNumber() const;
     std::string getDarkestSecret() const;
 };
+
+class PhoneBook {
+    private:
+        Contact contacts[8];
+        int     nextContact;
+        int     countContact;
+
+    public:
+        PhoneBook();
+        void    addContact(const Contact &c);
+        void    displayAllContacts();
+        void    displaySpecificContact(int index) const;
+};
+
+
+// functions prototype 
+
+void    add_contact(PhoneBook &phonebook);
+void    search_contact(PhoneBook &phonebook);
 
 #endif
