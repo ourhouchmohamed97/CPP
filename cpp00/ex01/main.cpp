@@ -3,18 +3,23 @@
 
 int main()
 {
-    Contact contactObj;
+    PhoneBook   phonebook;
+    std::string command;
 
-    contactObj.setFirstName("mohamed");
-    contactObj.setLastName("ourhouch");
-    contactObj.setNickName("eisen");
-    contactObj.setPhoneNumber("06123456");
-    contactObj.setDarkestSecret("nothing");
-
-    // print
-    std::cout << contactObj.getFirstName() << std::endl;
-    std::cout << contactObj.getLastName() << std::endl;
-    std::cout << contactObj.getNickName() << std::endl;
-    std::cout << contactObj.getPhoneNumber() << std::endl;
-    std::cout << contactObj.getDarkestSecret() << std::endl;
+    while(true)
+    {
+        std::cout << "Enter command {ADD, SEARCH, EXIT}: ";
+        std::getline(std::cin, command);
+        if(std::cin.eof())
+            break;
+        if(command == "ADD")
+            add_contact(phonebook);
+        else if(command == "SEARCH")
+            search_contact(phonebook);
+        else if(command == "EXIT")
+            break;
+        else
+            std::cout << "Invalid command" << std::endl;
+    }
+    return 0;
 }
