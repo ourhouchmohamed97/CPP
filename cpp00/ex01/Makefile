@@ -2,13 +2,9 @@
 NC      := \033[0m
 
 # Regular colors
-RED     := \033[0;31m
-YELLOW  := \033[0;33m
-BLUE    := \033[0;34m
 MAGENTA := \033[0;35m
 OK    	:= \033[1;32m
 INFO 	:= \033[1;36m
-WHITE   := \033[0;37m
 
 
 NAME = PhoneBook
