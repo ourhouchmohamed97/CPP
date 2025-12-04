@@ -122,17 +122,14 @@ void Account::displayStatus( void ) const {
               << std::endl;
 }
 
-void Account::_displayTimestamp(void) {
-    std::time_t t = std::time(nullptr);
-    std::tm *tm = std::localtime(&t);
+void	Account::_displayTimestamp(void) {
 
-    std::cout << "[" 
-              << (tm->tm_year + 1900)
-              << std::setw(2) << std::setfill('0') << tm->tm_mon + 1
-              << std::setw(2) << std::setfill('0') << tm->tm_mday
-              << "_"
-              << std::setw(2) << std::setfill('0') << tm->tm_hour
-              << std::setw(2) << std::setfill('0') << tm->tm_min
-              << std::setw(2) << std::setfill('0') << tm->tm_sec
-              << "]";
+	time_t		now;
+	struct tm	tstruct;
+	char		buf[80];
+
+	now = time(0);
+	tstruct = *localtime(&now);
+	strftime(buf, sizeof(buf), "[%Y%m%d_%H%M%S] ", &tstruct);
+	std::cout << buf;
 }
