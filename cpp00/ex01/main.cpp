@@ -1,8 +1,6 @@
 #include "PhoneBook.hpp"
 
-
-int main()
-{
+int main() {
     PhoneBook   phonebook;
     std::string command;
 
