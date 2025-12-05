@@ -45,7 +45,6 @@ class PhoneBook {
         void    displaySpecificContact(int index) const;
 };
 
-
 // functions prototype 
 
 void    add_contact(PhoneBook &phonebook);
