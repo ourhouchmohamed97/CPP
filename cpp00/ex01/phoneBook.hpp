@@ -1,6 +1,6 @@
 
-#ifndef PHONE_BOOK_H
-#define PHONE_BOOK_H
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include <iostream>
 #include <string>
