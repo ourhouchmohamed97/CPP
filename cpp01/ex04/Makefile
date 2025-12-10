@@ -11,13 +11,12 @@ CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
-HEADER = header.hpp
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
+$(NAME): $(OBJ)
 	@echo "$(INFO) => Starting build..$(NC)"
 	@$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 	@echo ""
@@ -30,7 +29,7 @@ $(NAME): $(OBJ) $(HEADER)
 	@echo ""
 	@echo "$(OK)=> done$(NC)"
 
-%.o: %.cpp $(HEADER)
+%.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
