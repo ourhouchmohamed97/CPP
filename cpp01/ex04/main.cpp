@@ -1,4 +1,6 @@
-#include "header.hpp"
+#include <iostream>
+#include <fstream>
+#include <string>
 
 int main(int ac, char **av) {
     if (ac != 4) {
@@ -15,14 +17,26 @@ int main(int ac, char **av) {
     return 1;
     }
 
-    std::ifstream infile(filename);
-    if (!infile.is_open()) {
+    std::ifstream input(filename);
+    if (!input.is_open()) {
         std::cerr << "Error: cannot open file." << std::endl;
         return 1;
     }
 
-    std::string content((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
-    infile.close();
+
+
+    std::string content;
+    std::string line;
+
+    while (std::getline(input, line)) {
+        content += line;
+        if (!input.eof()) {
+            content += "\n";
+        }
+    }
+    // ❗ Why we do this?
+    // Because it is MUCH easier to search and replace inside a big string than inside a file stream.
+    input.close();
 
     size_t pos = 0;
     while ((pos = content.find(s1, pos)) != std::string::npos)
@@ -35,3 +49,8 @@ int main(int ac, char **av) {
     outfile << content;
     outfile.close();
 }
+
+
+// **npos** is a static member constant value with the greatest possible value for an element of type size_t.
+// As a return value, it is usually used to indicate no matches.
+// This constant is defined with a value of -1, which because size_t is an unsigned integral type, it is the largest possible representable value for this type.
