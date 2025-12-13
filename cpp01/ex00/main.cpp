@@ -1,19 +1,12 @@
 #include "Zombie.hpp"
 
 int main() {
+    Zombie* heapZombie = newZombie("Lurch");
+    heapZombie->announce();
 
-    std::string input;
-    std::getline(std::cin, input);
-
-    Zombie zombie(input);
-    zombie.announce();
-
-    Zombie* z = newZombie("Lurch");
-    z->announce();
+    delete heapZombie;
 
     randomChump("Bub");
-    
-    delete z;
 
     return 0;
 }
