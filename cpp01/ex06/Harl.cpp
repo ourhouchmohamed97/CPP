@@ -20,18 +20,13 @@ void Harl::error( void ) {
     std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-int levelToInt( std::string level ) {
-    if(level == "DEBUG") return 0;
-    if(level == "INFO") return 1;
-    if(level == "WARNING") return 2;
-    if(level == "ERROR") return 3;
-    return -1;
-}
-
 void Harl::complain( std::string level ) {
-    int code = levelToInt(level);
+    std::string levels[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+    int i = 0;
 
-    switch (code)
+    while(i < 4 && levels[i] != level)
+        i++;
+    switch (i)
     {
         case 0:
             debug();
