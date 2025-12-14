@@ -84,3 +84,8 @@ To compile:
 
 ```bash
 make
+```
+---
+## Author
+Mohamed OURHOUCH
+42 School Project - CPP Module 00
