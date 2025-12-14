@@ -241,22 +241,22 @@ Common Makefile targets:
 
 ### Exercise 00:
 ```bash
-./brainz
+./BraiiiiiiinnnzzzZ
 ```
 
 ### Exercise 01:
 ```bash
-./moar_brainz
+./zombieHorde
 ```
 
 ### Exercise 02:
 ```bash
-./brain
+./ptrRef
 ```
 
 ### Exercise 03:
 ```bash
-./violence
+./Weapon
 ```
 
 ### Exercise 04:
@@ -268,7 +268,7 @@ Common Makefile targets:
 
 ### Exercise 05:
 ```bash
-./harl
+./Harl
 ```
 
 ### Exercise 06:
