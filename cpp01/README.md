@@ -187,12 +187,24 @@ Public method:
 
 **Implementation:**
 ```cpp
+// Inside the complain() method:
 void (Harl::*func[])() = { 
     &Harl::debug,
     &Harl::info,
     &Harl::warning,
     &Harl::error
 };
+
+// Array of level names for matching
+std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
+// Find and call the appropriate function
+for(int i = 0; i < 4; i++) {
+    if(level == levels[i]) {
+        (this->*func[i])();  // Call the member function through pointer
+        return;
+    }
+}
 ```
 
 ---
