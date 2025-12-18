@@ -10,9 +10,7 @@ class Fixed {
 
     public:
         Fixed(); // default constructor
-        Fixed(
-            
-            const Fixed& other); // copy constructor
+        Fixed(const Fixed& other); // copy constructor
         Fixed& operator=(const Fixed& other); // copy assignment
         ~Fixed(); // destructor
 
