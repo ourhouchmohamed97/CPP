@@ -6,11 +6,13 @@
 class Fixed {
     private:
         int value;
-        static const int fractional;
+        static const int fractional = 8;
 
     public:
         Fixed(); // default constructor
-        Fixed(const Fixed& other); // copy constructor
+        Fixed(
+            
+            const Fixed& other); // copy constructor
         Fixed& operator=(const Fixed& other); // copy assignment
         ~Fixed(); // destructor
 
