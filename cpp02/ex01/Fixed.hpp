@@ -9,7 +9,7 @@ class Fixed {
         static const int fractional = 8;
 
     public:
-        Fixed(); // default constructor
+        Fixed();
         Fixed( const int n );
         Fixed( const float f );
         Fixed( const Fixed& other );
