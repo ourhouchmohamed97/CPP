@@ -13,7 +13,7 @@ class Point {
         Point( const Point& other );
         Point& operator=( const Point& other );
         ~Point();
-        
+
         Fixed getX() const;
         Fixed getY() const;
 };
