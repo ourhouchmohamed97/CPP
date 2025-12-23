@@ -214,3 +214,7 @@ make re     # Recompile from scratch
 6. **Static member functions** provide utility operations without requiring an instance
 
 ---
+
+## Author
+Mohamed OURHOUCH
+42 School Project - CPP Module 02
