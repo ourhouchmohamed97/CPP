@@ -16,7 +16,7 @@ ClapTrap::ClapTrap(const ClapTrap& other)
     _name(other._name),
     _hitPoints(other._hitPoints),
     _energyPoints(other._energyPoints),
-    _attackDamage(other._attackDamage) 
+    _attackDamage(other._attackDamage)
 {
     std::cout << "ClapTrap copy constructor called" << std::endl;
 }
