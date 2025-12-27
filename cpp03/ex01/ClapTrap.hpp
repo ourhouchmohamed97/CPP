@@ -3,14 +3,14 @@
 #include <iostream>
 
 class ClapTrap {
-    private:
+    protected:
         std::string _name;
         int         _hitPoints;
         int         _energyPoints;
         int         _attackDamage;
 
     public:
-    
+        ClapTrap();
         ClapTrap( std::string name );
         ClapTrap( const ClapTrap& other );
         ClapTrap& operator=( const ClapTrap& other );
