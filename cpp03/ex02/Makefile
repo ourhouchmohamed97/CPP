@@ -12,10 +12,12 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 HEADER = ClapTrap.hpp \
-		 ScavTrap.hpp
+		 ScavTrap.hpp \
+		 FragTrap.hpp
 SRC = main.cpp \
 	ClapTrap.cpp \
-	ScavTrap.cpp
+	ScavTrap.cpp \
+	FragTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
