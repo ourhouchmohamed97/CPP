@@ -1,57 +1,30 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
+#include <iostream>
 
-int main()
+int main(void)
 {
-    std::cout << "===== CLAPTRAP TESTS =====" << std::endl;
+    std::cout << "===== CLAPTRAP TEST =====" << std::endl;
+    ClapTrap clap("CL4P");
+    clap.attack("target");
+    clap.takeDamage(5);
+    clap.beRepaired(3);
 
-    std::cout << "\n----- BASIC ACTIONS -----" << std::endl;
-    ClapTrap a("Semenyo");
+    std::cout << "\n===== SCAVTRAP TEST =====" << std::endl;
+    ScavTrap scav("SC4V");
+    scav.attack("intruder");
+    scav.takeDamage(20);
+    scav.beRepaired(10);
+    scav.guardGate();
 
-    a.attack("Thiago");
-    a.takeDamage(5);
-    a.beRepaired(3);
+    std::cout << "\n===== FRAGTRAP TEST =====" << std::endl;
+    FragTrap frag("FR4G");
+    frag.attack("enemy");
+    frag.takeDamage(30);
+    frag.beRepaired(20);
+    frag.highFivesGuys();
 
-    std::cout << "\n----- DAMAGE UNTIL DEATH -----" << std::endl;
-    a.takeDamage(20);
-    a.attack("Ballard");   // should NOT work
-    a.beRepaired(5);       // should NOT work
-
-    std::cout << "\n----- COPY CONSTRUCTOR -----" << std::endl;
-    ClapTrap b(a);
-    b.attack("Senesi");    // should also NOT work (copied HP = 0) a was dead → b copies HP = 0 → also dead.
-
-    std::cout << "\n----- COPY ASSIGNMENT -----" << std::endl;
-    ClapTrap c("Wilson");
-    c = a;
-    c.beRepaired(10);      // should NOT work
-
-    std::cout << "\n----- INDEPENDENCE TEST -----" << std::endl;
-    ClapTrap d("Guéhi");
-    d.attack("Raya");
-
-    std::cout << "\n\n===== SCAVTRAP TESTS =====" << std::endl;
-
-    std::cout << "\n----- BASIC ACTIONS -----" << std::endl;
-    ScavTrap s("Van Dijk");
-
-    s.attack("Haaland");   // inherited from ClapTrap
-    s.takeDamage(30);
-    s.beRepaired(20);
-
-    std::cout << "\n----- GUARD GATE MODE -----" << std::endl;
-    s.guardGate();
-
-    std::cout << "\n----- COPY CONSTRUCTOR -----" << std::endl;
-    ScavTrap s2(s);
-    s2.attack("Salah");
-    s2.guardGate();
-
-    std::cout << "\n----- COPY ASSIGNMENT -----" << std::endl;
-    ScavTrap s3("Alisson");
-    s3 = s;
-    s3.takeDamage(100);
-    s3.attack("De Bruyne"); // should NOT work
-
+    std::cout << "\n===== DESTRUCTION ORDER TEST =====" << std::endl;
     return 0;
 }
