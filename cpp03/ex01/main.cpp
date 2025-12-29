@@ -1,57 +1,65 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include <iostream>
 
 int main()
 {
-    std::cout << "===== CLAPTRAP TESTS =====" << std::endl;
+    std::cout << "===== CLAPTRAP TESTS =====\n";
 
-    std::cout << "\n----- BASIC ACTIONS -----" << std::endl;
-    ClapTrap a("Semenyo");
+    // Basic actions
+    ClapTrap alpha("Alpha");
+    std::cout << "\n-- BASIC ACTIONS --\n";
+    alpha.attack("Target1");
+    alpha.takeDamage(5);
+    alpha.beRepaired(3);
 
-    a.attack("Thiago");
-    a.takeDamage(5);
-    a.beRepaired(3);
+    // Damage until death
+    std::cout << "\n-- DAMAGE UNTIL DEATH --\n";
+    alpha.takeDamage(20);
+    alpha.attack("Target2");   // should fail
+    alpha.beRepaired(5);       // should fail
 
-    std::cout << "\n----- DAMAGE UNTIL DEATH -----" << std::endl;
-    a.takeDamage(20);
-    a.attack("Ballard");   // should NOT work
-    a.beRepaired(5);       // should NOT work
+    // Copy constructor
+    std::cout << "\n-- COPY CONSTRUCTOR --\n";
+    ClapTrap beta(alpha);
+    beta.attack("Target3");    // should fail
 
-    std::cout << "\n----- COPY CONSTRUCTOR -----" << std::endl;
-    ClapTrap b(a);
-    b.attack("Senesi");    // should also NOT work (copied HP = 0) a was dead → b copies HP = 0 → also dead.
+    // Copy assignment
+    std::cout << "\n-- COPY ASSIGNMENT --\n";
+    ClapTrap gamma("Gamma");
+    gamma = alpha;
+    gamma.beRepaired(10);      // should fail
 
-    std::cout << "\n----- COPY ASSIGNMENT -----" << std::endl;
-    ClapTrap c("Wilson");
-    c = a;
-    c.beRepaired(10);      // should NOT work
+    // Independence
+    std::cout << "\n-- INDEPENDENCE --\n";
+    ClapTrap delta("Delta");
+    delta.attack("Target4");
 
-    std::cout << "\n----- INDEPENDENCE TEST -----" << std::endl;
-    ClapTrap d("Guéhi");
-    d.attack("Raya");
+    std::cout << "\n===== SCAVTRAP TESTS =====\n";
 
-    std::cout << "\n\n===== SCAVTRAP TESTS =====" << std::endl;
+    // Basic actions
+    ScavTrap scout("Scout");
+    std::cout << "\n-- BASIC ACTIONS --\n";
+    scout.attack("Enemy1");
+    scout.takeDamage(30);
+    scout.beRepaired(20);
 
-    std::cout << "\n----- BASIC ACTIONS -----" << std::endl;
-    ScavTrap s("Van Dijk");
+    // Guard Gate mode
+    std::cout << "\n-- GUARD GATE MODE --\n";
+    scout.guardGate();
 
-    s.attack("Haaland");   // inherited from ClapTrap
-    s.takeDamage(30);
-    s.beRepaired(20);
+    // Copy constructor
+    std::cout << "\n-- COPY CONSTRUCTOR --\n";
+    ScavTrap sentinel(scout);
+    sentinel.attack("Enemy2");
+    sentinel.guardGate();
 
-    std::cout << "\n----- GUARD GATE MODE -----" << std::endl;
-    s.guardGate();
-
-    std::cout << "\n----- COPY CONSTRUCTOR -----" << std::endl;
-    ScavTrap s2(s);
-    s2.attack("Salah");
-    s2.guardGate();
-
-    std::cout << "\n----- COPY ASSIGNMENT -----" << std::endl;
-    ScavTrap s3("Alisson");
-    s3 = s;
-    s3.takeDamage(100);
-    s3.attack("De Bruyne"); // should NOT work
+    // Copy assignment
+    std::cout << "\n-- COPY ASSIGNMENT --\n";
+    ScavTrap defender("Defender");
+    defender = scout;
+    defender.takeDamage(100);
+    defender.attack("Enemy3"); // should fail
 
     return 0;
 }
