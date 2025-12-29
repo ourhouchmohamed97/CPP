@@ -1,4 +1,5 @@
 #include "ClapTrap.hpp"
+#include <iostream>
 
 ClapTrap::ClapTrap() : _name("default"),  _hitPoints(10), _energyPoints(10), _attackDamage(0) 
 {
