@@ -1,5 +1,18 @@
 #include "DiamondTrap.hpp"
 
+DiamondTrap::DiamondTrap()
+    : ScavTrap(),
+      FragTrap(),
+      _name("default")
+{
+    ScavTrap::_name = _name + "_clap_name";
+    FragTrap::_hitPoints = 100;
+    ScavTrap::_energyPoints = 50;
+    FragTrap::_attackDamage = 30;
+    ScavTrap::_attackDamage = FragTrap::_attackDamage;
+    std::cout << "DiamondTrap default constructor called for " << _name << std::endl;
+}
+
 DiamondTrap::DiamondTrap(std::string name)
     : ScavTrap(name),
       FragTrap(name),
@@ -9,11 +22,9 @@ DiamondTrap::DiamondTrap(std::string name)
     FragTrap::_hitPoints = 100;
     ScavTrap::_energyPoints = 50;
     FragTrap::_attackDamage = 30;
-
-    std::cout << "DiamondTrap constructor called for " << _name << std::endl;
+    ScavTrap::_attackDamage = FragTrap::_attackDamage;
+    std::cout << "DiamondTrap parameterized constructor called for " << _name << std::endl;
 }
-
-
 
 DiamondTrap::DiamondTrap( const DiamondTrap& other )
     : ScavTrap(other),
@@ -23,6 +34,7 @@ DiamondTrap::DiamondTrap( const DiamondTrap& other )
     FragTrap::_hitPoints = 100;
     ScavTrap::_energyPoints = 50;
     FragTrap::_attackDamage = 30;
+    ScavTrap::_attackDamage = FragTrap::_attackDamage;
     std::cout << "DiamondTrap copy constructor called for " << _name << std::endl;
 }
 
