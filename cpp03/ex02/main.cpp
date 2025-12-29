@@ -3,28 +3,28 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-int main(void)
+int main()
 {
-    std::cout << "===== CLAPTRAP TEST =====" << std::endl;
-    ClapTrap clap("CL4P");
-    clap.attack("target");
-    clap.takeDamage(5);
-    clap.beRepaired(3);
+    std::cout << "===== CLAPTRAP TEST =====\n";
+    ClapTrap alpha("Alpha");
+    alpha.attack("Target1");
+    alpha.takeDamage(5);
+    alpha.beRepaired(3);
 
-    std::cout << "\n===== SCAVTRAP TEST =====" << std::endl;
-    ScavTrap scav("SC4V");
-    scav.attack("intruder");
-    scav.takeDamage(20);
-    scav.beRepaired(10);
-    scav.guardGate();
+    std::cout << "\n===== SCAVTRAP TEST =====\n";
+    ScavTrap scout("Scout");
+    scout.attack("Enemy1");
+    scout.takeDamage(20);
+    scout.beRepaired(10);
+    scout.guardGate();
 
-    std::cout << "\n===== FRAGTRAP TEST =====" << std::endl;
-    FragTrap frag("FR4G");
-    frag.attack("enemy");
-    frag.takeDamage(30);
-    frag.beRepaired(20);
-    frag.highFivesGuys();
+    std::cout << "\n===== FRAGTRAP TEST =====\n";
+    FragTrap blaze("Blaze");
+    blaze.attack("Enemy2");
+    blaze.takeDamage(30);
+    blaze.beRepaired(20);
+    blaze.highFivesGuys();
 
-    std::cout << "\n===== DESTRUCTION ORDER TEST =====" << std::endl;
+    std::cout << "\n===== DESTRUCTION ORDER TEST =====\n";
     return 0;
 }
