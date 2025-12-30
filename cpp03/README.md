@@ -241,6 +241,7 @@ Common Makefile targets:
 
 ### Constructor Chaining
 ```cpp
+
 // Base constructor is called automatically (or explicitly)
 DerivedClass::DerivedClass() : BaseClass() {
     // Initialize derived members
