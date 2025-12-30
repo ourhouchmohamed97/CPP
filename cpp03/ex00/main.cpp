@@ -12,12 +12,12 @@ int main()
 
     std::cout << "\n---- DAMAGE UNTIL DEATH ----\n";
     alpha.takeDamage(20);
-    alpha.attack("Target2");  // should fail
-    alpha.beRepaired(5);      // should fail
+    alpha.attack("Target2");
+    alpha.beRepaired(5);
 
     std::cout << "\n---- COPY CONSTRUCTOR ----\n";
     ClapTrap beta(alpha);
-    beta.attack("Target3");   // also should fail if HP=0
+    beta.attack("Target3");
 
     std::cout << "\n---- COPY ASSIGNMENT ----\n";
     ClapTrap gamma("Gamma");
