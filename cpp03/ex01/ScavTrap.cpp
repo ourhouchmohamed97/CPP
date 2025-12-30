@@ -49,7 +49,6 @@ void ScavTrap::attack(const std::string& target)
               << " points of damage!" << std::endl;
 }
 
-
 void ScavTrap::guardGate() {
     std::cout << "ScavTrap " << _name << " activates Gate Keeper protocol." << std::endl;
 }
