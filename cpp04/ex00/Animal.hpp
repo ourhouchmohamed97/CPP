@@ -12,7 +12,8 @@ class Animal {
         Animal( std::string const &type );
         Animal( const Animal& other );
         Animal& operator=(const Animal& other );
-        ~Animal(); // i think this must be virtual
+        virtual ~Animal();
 
-        void makeSound();
+        std::string const &getType( void )const;
+        virtual void makeSound() const;
 };
