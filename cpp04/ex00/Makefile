@@ -13,9 +13,17 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 
-HEADER = Animal.hpp
+HEADER = Animal.hpp \
+		 WrongAnimal.hpp \
+		 Cat.hpp    \
+		 WrongCat.hpp    \
+		 Dog.hpp
 SRC = Animal.cpp \
-	  main.cpp   
+	  WrongAnimal.cpp \
+	  Cat.cpp \
+	  WrongCat.cpp \
+	  Dog.cpp \
+	  main.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
