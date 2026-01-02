@@ -2,13 +2,8 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-void check(){
-    system("leaks -q Animals");
-}
-
 int main()
 {
-    atexit(check);
     std::cout << "\n===== SUBJECT TEST =====\n" << std::endl;
     
     const Animal* i = new Cat();
