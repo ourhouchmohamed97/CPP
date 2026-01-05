@@ -9,5 +9,5 @@ class Cure : public AMateria {
         Cure();
         ~Cure();
         AMateria* clone() const;
-        void use(ICharacter& target);
+        void use( ICharacter& target );
 };
