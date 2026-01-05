@@ -7,15 +7,25 @@ OK    	:= \033[1;32m
 INFO 	:= \033[1;36m
 
 
-NAME = AAnimal
+NAME = Interface
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
+HEADER = AMateria.hpp \
+		 Cure.hpp \
+		 Ice.hpp \
+		 ICharacter.hpp \
+		 Character.hpp \
+		 MateriaSource.hpp \
+		 IMateriaSource.hpp
 
-HEADER = Animal.hpp \
-SRC = Animal.cpp \
-	  main.cpp
+SRC = main.cpp \
+	  AMateria.cpp \
+	  Cure.cpp \
+	  Ice.cpp \
+	  MateriaSource.cpp \
+	  Character.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
