@@ -5,6 +5,7 @@
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include <iostream>
 
 int main() {
 
@@ -21,60 +22,58 @@ int main() {
     tmp = src->createMateria("cure");
     me->equip(tmp);
 
-    ICharacter* bob = new Character("bob"); me->use(0, *bob);
+    ICharacter* bob = new Character("bob");
 
+    me->use(0, *bob);
     me->use(1, *bob);
 
     delete bob;
     delete me;
     delete src;
-
-    std::cout << "===== MORE TESTs =====" << std::endl;
+    
+    std::cout << "\n===== MORE TESTs =====" << std::endl;
     std::cout << "===== MATERIA SOURCE TEST =====" << std::endl;
     
-    // Create a MateriaSource and teach it some Materias
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
+    // Create a new MateriaSource and teach it some Materias
+    IMateriaSource* src2 = new MateriaSource();
+    src2->learnMateria(new Ice());
+    src2->learnMateria(new Cure());
 
     std::cout << "\n===== CHARACTER CREATION =====" << std::endl;
-    ICharacter* me = new Character("me");
-    ICharacter* bob = new Character("bob");
+    ICharacter* me2 = new Character("me");
+    ICharacter* bob2 = new Character("bob");
 
     std::cout << "\n===== EQUIP MATERIAS =====" << std::endl;
-    AMateria* tmp;
+    AMateria* ice = src2->createMateria("ice");
+    me2->equip(ice);
 
-    tmp = src->createMateria("ice"); // clone Ice
-    me->equip(tmp);
-
-    tmp = src->createMateria("cure"); // clone Cure
-    me->equip(tmp);
+    AMateria* cure = src2->createMateria("cure");
+    me2->equip(cure);
 
     std::cout << "\n===== USE MATERIAS =====" << std::endl;
-    me->use(0, *bob); // Ice effect
-    me->use(1, *bob); // Cure effect
+    me2->use(0, *bob2);
+    me2->use(1, *bob2);
 
     std::cout << "\n===== UNEQUIP TEST =====" << std::endl;
-    // Save pointer before unequip to avoid memory leak
-    AMateria* dropped = tmp;
-    me->unequip(0); // removes Ice from inventory
-    delete dropped; // safely delete unequipped Materia
+    // Unequip Ice safely
+    me2->unequip(0); // remove Ice from inventory
+    delete ice;      // safe: only delete pointer no longer in inventory
 
     std::cout << "\n===== COPY CONSTRUCTOR TEST =====" << std::endl;
-    Character* cloneMe = new Character(*(dynamic_cast<Character*>(me)));
-    cloneMe->use(1, *bob); // ensure deep copy works
+    Character* cloneMe = new Character(*(dynamic_cast<Character*>(me2)));
+    cloneMe->use(1, *bob2); // ensure deep copy works
+
 
     std::cout << "\n===== ASSIGNMENT OPERATOR TEST =====" << std::endl;
     Character assignTest("temp");
-    assignTest = *(dynamic_cast<Character*>(me));
-    assignTest.use(1, *bob);
+    assignTest = *(dynamic_cast<Character*>(me2));
+    assignTest.use(1, *bob2);
 
     std::cout << "\n===== CLEANUP =====" << std::endl;
-    delete bob;
-    delete me;
+    delete bob2;
+    delete me2;
     delete cloneMe;
-    delete src;
-
+    delete src2;
 
     return 0;
 }
