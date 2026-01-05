@@ -2,7 +2,6 @@
 
 
 AMateria::AMateria(std::string const & type) : _type(type) {
-    std::cout << "AMateria parameterized constructor called!" << std::endl;
 }
 
 std::string const & AMateria::getType() const {
@@ -14,5 +13,4 @@ void AMateria::use(ICharacter& target) {
 }
 
 AMateria::~AMateria() {
-    std::cout << "AMateria destroyed" << std::endl;
 }
