@@ -9,6 +9,10 @@ std::string const & AMateria::getType() const {
     return this->_type;
 }
 
+void AMateria::use(ICharacter& target) {
+    std::cout << "* AMateria used on " << target.getName() << " *" << std::endl;
+}
+
 AMateria::~AMateria() {
     std::cout << "AMateria destroyed" << std::endl;
 }
