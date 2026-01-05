@@ -3,7 +3,6 @@
 Character::Character(std::string const& name) : _name(name) {
     for (int i = 0; i < 4; i++)
         _inventory[i] = NULL;
-    std::cout << "Character parameterized constructor called!" << std::endl;
 };
 
 Character::Character(Character const& other) : _name(other._name) {
@@ -34,7 +33,6 @@ Character::~Character() {
     for (int i = 0; i < 4; i++) {
         delete _inventory[i];
     }
-    std::cout << "Character destructor called!" << std::endl;
 };
 
 std::string const& Character::getName() const {
