@@ -3,7 +3,6 @@
 MateriaSource::MateriaSource() {
     for(int i = 0; i < 4; i++)
         _materias[i] = NULL;
-    std::cout << "MateriaSource default constructor called!" << std::endl;
 }
 
 MateriaSource::MateriaSource( MateriaSource const& other ) {
@@ -31,7 +30,6 @@ MateriaSource& MateriaSource::operator=( MateriaSource const& other ) {
 MateriaSource::~MateriaSource() {
     for(int i = 0; i < 4; i++)
         delete _materias[i];
-    std::cout << "MateriaSource destructor called!" << std::endl;
 }
 
 void MateriaSource::learnMateria( AMateria* m ) {
