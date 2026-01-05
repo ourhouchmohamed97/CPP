@@ -9,5 +9,5 @@ class Ice : public AMateria {
         Ice();
         ~Ice();
         AMateria* clone() const;
-        void use(ICharacter& target);
+        void use( ICharacter& target );
 };
