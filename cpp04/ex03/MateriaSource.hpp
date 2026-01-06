@@ -13,6 +13,6 @@ class MateriaSource : public IMateriaSource {
         MateriaSource( MateriaSource const& other );
         MateriaSource& operator=( MateriaSource const& other );
 
-        void learnMateria( AMateria* m ); // store the pointer
-        AMateria* createMateria( std::string const & type ); // clone matching type
+        void learnMateria( AMateria* m );
+        AMateria* createMateria( std::string const & type );
 };
