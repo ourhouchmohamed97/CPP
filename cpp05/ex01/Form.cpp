@@ -11,7 +11,7 @@ Form::Form()
 }
 
 
-Form::Form( const std::string& name, int signGrade, int execGrade ) 
+Form::Form( const std::string& name, const int signGrade, const int execGrade ) 
     : _name(name),
     _isSigned(false),
     _signGrade(signGrade),
