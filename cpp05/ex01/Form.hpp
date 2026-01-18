@@ -10,13 +10,13 @@ class Form {
     private:
         const std::string _name;
         bool _isSigned;
-        int _signGrade;
-        int _execGrade;
+        const int _signGrade;
+        const int _execGrade;
     
     public:
         // OCF
         Form();
-        Form( const std::string& name, int signGrade, int execGrade );
+        Form( const std::string& name, const int signGrade, const int execGrade );
         Form( const Form& other );
         Form& operator=( const Form& other );
         ~Form();
