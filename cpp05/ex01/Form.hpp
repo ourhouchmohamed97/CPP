@@ -24,8 +24,8 @@ class Form {
         // Getters
         const std::string& getName() const;
         bool getIsSigned() const;
-        int getSignGradee() const;
-        int getExecGradee() const;
+        int getSignGrade() const;
+        int getExecGrade() const;
 
         void beSigned( const Bureaucrat& bureaucrat);
 
