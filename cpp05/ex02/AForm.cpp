@@ -5,10 +5,7 @@ AForm::AForm()
     : _name("default"),
     _isSigned(false),
     _signGrade(150),
-    _execGrade(150)
-{
-    std::cout << "AForm created! [default constructor called]" << std::endl;
-}
+    _execGrade(150) {}
 
 
 AForm::AForm( const std::string& name, int signGrade, int execGrade ) 
@@ -17,7 +14,6 @@ AForm::AForm( const std::string& name, int signGrade, int execGrade )
     _signGrade(signGrade),
     _execGrade(execGrade)
 {
-    std::cout << "AForm created! [parameterized constructor called]" << std::endl;
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
     if (signGrade > 150 || execGrade > 150)
@@ -28,10 +24,7 @@ AForm::AForm( const AForm& other )
     : _name(other._name),
     _isSigned(other._isSigned),
     _signGrade(other._signGrade),
-    _execGrade(other._execGrade)
-{
-    std::cout << "AForm copy constructor called" << std::endl;
-}
+    _execGrade(other._execGrade) {}
 
 AForm& AForm::operator=( const AForm& other ) {
     if (this != &other)
@@ -39,9 +32,7 @@ AForm& AForm::operator=( const AForm& other ) {
     return *this;
 }
 
-AForm::~AForm() {
-    std::cout << "AForm destroyed! [destructor called]" << std::endl;
-}
+AForm::~AForm() {}
 
 const std::string& AForm::getName() const {
     return _name;
