@@ -15,11 +15,13 @@ RM = rm -rf
 
 HEADER = Bureaucrat.hpp \
 		 AForm.hpp \
+		 Intern.hpp \
 		 RobotomyRequestForm.hpp \
 		 ShrubberyCreationForm.hpp \
 	  	 PresidentialPardonForm.hpp
 SRC = main.cpp \
 	  AForm.cpp \
+	  Intern.cpp \
 	  Bureaucrat.cpp \
 	  RobotomyRequestForm.cpp \
 	  ShrubberyCreationForm.cpp \
