@@ -462,55 +462,6 @@ class Form {
 
 ---
 
-## Exception Specifications (C++98)
-
-**Dynamic exception specifications** (deprecated in C++11, removed in C++17):
-
-```cpp
-void function() throw();                    // Won't throw any exception
-void function() throw(std::exception);      // Only throws std::exception
-void function();                            // Can throw any exception
-```
-
-**Modern C++ alternative:**
-```cpp
-void function() noexcept;        // C++11 and later
-```
-
----
-
-## Testing Your Implementation
-
-### Test Cases for ex00:
-- ✓ Create bureaucrat with valid grade
-- ✓ Increment grade (success and exception)
-- ✓ Decrement grade (success and exception)
-- ✓ Invalid construction (grade 0, grade 151)
-- ✓ Stream output operator
-
-### Test Cases for ex01:
-- ✓ Create form with valid grades
-- ✓ Invalid form creation (grades out of range)
-- ✓ Signing with sufficient grade
-- ✓ Signing with insufficient grade
-- ✓ Stream output operator
-
-### Test Cases for ex02:
-- ✓ Execute signed form with sufficient grade
-- ✓ Execute unsigned form (should fail)
-- ✓ Execute with insufficient grade
-- ✓ ShrubberyCreationForm creates file
-- ✓ RobotomyRequestForm randomness
-- ✓ PresidentialPardonForm message
-
-### Test Cases for ex03:
-- ✓ Create each form type via Intern
-- ✓ Unknown form name (returns NULL)
-- ✓ Verify created forms are correct type
-- ✓ Memory management (no leaks)
-
----
-
 ## Author
 Mohamed OURHOUCH  
 42 School Project - CPP Module 05
