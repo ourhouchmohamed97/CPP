@@ -36,7 +36,7 @@ void ShrubberyCreationForm::execute( const Bureaucrat& presidential ) const {
     outfile << "   ,%&/%&&%&&%,@@@/@@@/@@@88/88888/88'   \n";
     outfile << "   %&&%&%&/%&&%@@/@@/ /@@@88888/88888'   \n";
     outfile << "   %&&%/ %&@%&&@@/ V /@@' `88/8 `/88'    \n";
-    outfile << "   `&%@ ` /%&'    |.|         | |8'     \n";
+    outfile << "   `&%@ ` /%&'    |.|         | |8'      \n";
     outfile << "       |o|        | |         | |        \n";
     outfile << "       |.|        | |         | |        \n";
     outfile << "    \\/ ._///_/__/  ,/_//__\\/.  /_//__/_\n";
