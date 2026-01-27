@@ -15,6 +15,7 @@ RM = rm -rf
 
 HEADER = ScalarConverter.hpp
 SRC = main.cpp \
+	  check.cpp \
 	  ScalarConverter.cpp
 OBJ = $(SRC:.cpp=.o)
 
