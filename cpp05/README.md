@@ -1,6 +1,6 @@
 # C++ Module 05 – Repetition and Exceptions
 
-This repository contains the solutions for **CPP Module 05** from the 42 curriculum. The module focuses on **exception handling, try-catch blocks, custom exceptions, and the Orthodox Canonical Form with exceptions**.
+This repository contains the solutions for **CPP Module 05** from the 42 curriculum. The module focuses on **exception handling, try-throw-catch blocks, custom exceptions, and the Orthodox Canonical Form with exceptions**.
 
 ---
 
