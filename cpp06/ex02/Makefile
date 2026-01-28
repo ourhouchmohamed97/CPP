@@ -7,15 +7,15 @@ OK    	:= \033[1;32m
 INFO 	:= \033[1;36m
 
 
-NAME = Serializer 
+NAME = Dynamic
 CPP = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 
 
-HEADER = Serializer.hpp
+HEADER = Base.hpp
 SRC = main.cpp \
-	  Serializer.cpp
+	  Base.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
