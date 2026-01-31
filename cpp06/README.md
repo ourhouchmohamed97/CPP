@@ -472,28 +472,6 @@ Type* ptr = reinterpret_cast<Type*>(raw);
 
 ---
 
-## Common Pitfalls
-
-❌ **Using dynamic_cast on non-polymorphic types** → Compile error  
-✅ **Ensure class has virtual function**
-
-❌ **Forgetting to check dynamic_cast pointer result** → Segfault  
-✅ **Always check for NULL before using**
-
-❌ **Using reinterpret_cast for type conversions** → Undefined behavior  
-✅ **Use static_cast for standard conversions**
-
-❌ **Modifying const objects via const_cast** → Undefined behavior  
-✅ **Only use const_cast with originally non-const objects**
-
-❌ **C-style casts: (int)value** → Unclear, unsafe  
-✅ **Use C++ named casts: static_cast<int>(value)**
-
-❌ **Assuming dynamic_cast always succeeds** → Crash  
-✅ **Handle failure cases appropriately**
-
----
-
 ## Additional Notes
 
 ### Pseudo-Literals
