@@ -12,8 +12,8 @@ This repository contains the solutions for **CPP Module 06** from the 42 curricu
 - **dynamic_cast** for runtime type identification
 - **const_cast** for removing const qualifiers
 - **Scalar type conversions** (char, int, float, double)
-- **Type detection** and validation
-- **Serialization** and deserialization
+- **Type detection** and **validation**
+- **Serialization** and **deserialization**
 - **Runtime type identification (RTTI)**
 - **Pseudo-literals** (nan, inf)
 
