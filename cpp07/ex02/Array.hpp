@@ -2,8 +2,11 @@
 
 #include <iostream>
 
+template <typename T>
 class Array {
     private:
+        T*              _arr;
+        unsigned int    _size;
 
     public:
         Array();
@@ -11,4 +14,8 @@ class Array {
         Array( const Array& other );
         Array& operator=( const Array& other );
         ~Array();
+
+        unsigned int size();
 };
+
+#include "Array.tpp"
