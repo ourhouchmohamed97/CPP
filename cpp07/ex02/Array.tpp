@@ -27,3 +27,15 @@ template <typename T>
 Array<T>::~Array() {
     delete[] _arr;
 }
+
+template <typename T>
+T& Array<T>::operator[](unsigned int index) {
+    if (index >= _size)
+        throw std::exception();
+    return _data[index];
+}
+
+template <typename T>
+unsigned int Array<T>::size() const {
+    return _size;
+}
