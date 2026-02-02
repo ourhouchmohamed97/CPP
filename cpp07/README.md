@@ -563,28 +563,6 @@ print<double>(42);  // T explicitly set to double
 
 ---
 
-## Common Pitfalls
-
-❌ **Forgetting deep copy** → Shallow copy, double deletion  
-✅ **Implement proper copy constructor and assignment operator**
-
-❌ **Missing self-assignment check** → Undefined behavior  
-✅ **Always check `if (this != &other)`**
-
-❌ **Not deleting old memory before assignment** → Memory leak  
-✅ **Delete old array before allocating new one**
-
-❌ **Template implementation in .cpp** → Linker error  
-✅ **Keep template implementation in header or .tpp**
-
-❌ **Out-of-bounds access without checking** → Segfault  
-✅ **Validate indices and throw exceptions**
-
-❌ **Assuming default initialization** → Garbage values  
-✅ **Use `new T[n]()` with parentheses for default initialization**
-
-❌ **Not providing const overload** → Cannot use with const objects  
-✅ **Provide both const and non-const versions**
 
 ---
 
