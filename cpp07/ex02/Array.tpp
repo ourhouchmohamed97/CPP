@@ -16,7 +16,7 @@ Array<T>& Array<T>::operator=( const Array& other ) {
     if (this != &other) {
         delete[] _arr;
         _size = other._size;
-        _data = new T[_size]();
+        _arr = new T[_size]();
         for (unsigned int i = 0; i < _size; i++)
             _arr[i] = other._arr[i];
     }
@@ -29,10 +29,17 @@ Array<T>::~Array() {
 }
 
 template <typename T>
-T& Array<T>::operator[](unsigned int index) {
+T& Array<T>::operator[]( unsigned int index ) {
     if (index >= _size)
         throw std::exception();
-    return _data[index];
+    return _arr[index];
+}
+
+template <typename T>
+const T& Array<T>::operator[]( unsigned int index ) const {
+    if (index >= _size)
+        throw std::exception();
+    return _arr[index];
 }
 
 template <typename T>
