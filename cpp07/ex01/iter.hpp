@@ -11,7 +11,7 @@ void iter(T *arr, const size_t len, F func) {
 }
 
 template <typename T>
-void print(T const &x) {
+void print(T &x) {
     std::cout << x << std::endl;
 }
 
