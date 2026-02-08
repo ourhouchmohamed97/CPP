@@ -1,8 +1,11 @@
 #pragma once
 
+#include <vector>
+
 class Span {
     private:
         unsigned int N;
+        std::vector<int> integers;
 
     public:
         Span( unsigned int N );
@@ -10,7 +13,8 @@ class Span {
         Span& operator=( const Span& other );
         ~Span();
 
-        void addNumber();
-        void shortestSpan();
-        void longestSpan();
+        void addNumber( int value );
+
+        int shortestSpan();
+        int longestSpan();
 };
