@@ -213,7 +213,7 @@ sp.addNumber(17);
 sp.addNumber(9);
 sp.addNumber(11);
 
-std::cout << sp.shortestSpan() << std::endl;  // 2 (11-9 or 9-6-3)
+std::cout << sp.shortestSpan() << std::endl;  // 2 (11-9 or 9-6 in sorted: 3,6,9,11,17)
 std::cout << sp.longestSpan() << std::endl;   // 14 (17-3)
 
 // Exception handling
