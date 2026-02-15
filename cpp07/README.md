@@ -592,46 +592,6 @@ No separate object file for templates
 
 ---
 
-## Memory Management
-
-### Dynamic Array Allocation
-
-**Allocation:**
-```cpp
-T* arr = new T[n]();  // () ensures default initialization
-```
-
-**Deallocation:**
-```cpp
-delete[] arr;  // [] is critical for arrays
-```
-
-**Common mistakes:**
-```cpp
-delete arr;     // ❌ Wrong: deletes only first element
-delete[] arr;   // ✅ Correct: deletes entire array
-```
-
-### RAII Pattern
-
-**Resource management in constructors/destructors:**
-```cpp
-template <typename T>
-class Array {
-    T* _arr;
-public:
-    Array(unsigned int n) : _arr(new T[n]()) {}  // Acquire
-    ~Array() { delete[] _arr; }                   // Release
-};
-```
-
-**Benefits:**
-- Automatic cleanup
-- Exception-safe
-- Prevents resource leaks
-
----
-
 ## Testing Strategy
 
 ### Test Cases for Templates
