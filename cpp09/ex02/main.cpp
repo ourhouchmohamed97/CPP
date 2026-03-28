@@ -1,5 +1,3 @@
-#include <iostream>
-#include <ctime>
 #include "PmergeMe.hpp"
 
 int main(int ac, char **av) {
