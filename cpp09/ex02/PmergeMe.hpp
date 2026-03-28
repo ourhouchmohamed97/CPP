@@ -1,7 +1,13 @@
 #pragma once
 
+#include <iostream>
 #include <vector>
 #include <deque>
+#include <sstream>
+#include <stdexcept>
+#include <climits>
+#include <ctime>
+#include <algorithm>
 
 class PmergeMe {
     public :
@@ -10,12 +16,9 @@ class PmergeMe {
         PmergeMe& operator=( const PmergeMe& other );
         ~PmergeMe();
         
-        void parseInput(int argc, char **argv); // validate + fill containers
-        void sort();                            // run both sorts + time them
-        void display() const;                   // print Before/After/Times
-
-        void sortVector( std::vector<int>& vec );
-        void sortDeque( std::deque<int>& deq );
+        void parseInput(int argc, char **argv);
+        void sort();
+        void display() const;
 
     private :
         std::vector<int> _vec;
@@ -24,14 +27,11 @@ class PmergeMe {
         double _vecTime;
         double _deqTime;
 
-        // Ford-Johnson for vector
         void fordJohnsonVec(std::vector<int> &seq);
         void binaryInsertVec(std::vector<int> &chain, int val, int end);
 
-        // Ford-Johnson for deque
         void fordJohnsonDeq(std::deque<int> &seq);
         void binaryInsertDeq(std::deque<int> &chain, int val, int end);
 
-        // Jacobsthal helper
         std::vector<int> getJacobsthalOrder(int n);
 };
