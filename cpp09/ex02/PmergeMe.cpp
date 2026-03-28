@@ -31,30 +31,33 @@ PmergeMe::~PmergeMe() {}
 //  Input parsing
 // ─────────────────────────────────────────────
 
-
 void PmergeMe::parseInput(int argc, char **argv) {
-    for (int i = 0; i < argc; i++) {
+    for (int i = 1; i < argc; ++i) {
         std::string token(argv[i]);
 
+        // Reject empty tokens
         if (token.empty())
-            throw std::runtime_error("Empty token rejected");
+            throw std::runtime_error("empty token");
 
-        for (size_t j = 0; j < token.size(); j++) {
+        // Reject anything that is not purely digits
+        for (size_t j = 0; j < token.size(); ++j) {
             if (!std::isdigit(static_cast<unsigned char>(token[j])))
-                throw std::runtime_error("Invalid chaaracter: " + token);
+                throw std::runtime_error("invalid character: " + token);
         }
 
+        // Parse as long to catch values > INT_MAX
         long val = std::strtol(token.c_str(), NULL, 10);
         if (val <= 0 || val > INT_MAX)
-            throw std::runtime_error("Out Of range: " + token);
+            throw std::runtime_error("out of range: " + token);
 
         int num = static_cast<int>(val);
         _vec.push_back(num);
         _deq.push_back(num);
         _original.push_back(num);
     }
+
     if (_vec.empty())
-        throw std::runtime_error("No input");
+        throw std::runtime_error("no input");
 }
 
 // ─────────────────────────────────────────────
@@ -71,8 +74,9 @@ std::vector<int> PmergeMe::getJacobsthalOrder(int n) {
     while (jacob.back() < n)
         jacob.push_back(jacob[jacob.size()-1] + 2 * jacob[jacob.size()-2]);
 
+    // Walk through groups: each group is [prev+1 .. curr] inserted backwards
     std::vector<int> order;
-    for (size_t k = 2; k < jacob.size(); ++k) {
+    for (size_t k = 1; k < jacob.size(); ++k) {
         int hi = std::min(jacob[k], n);   // clamp to actual pend size
         int lo = jacob[k-1] + 1;
         for (int idx = hi; idx >= lo; --idx)
@@ -81,7 +85,6 @@ std::vector<int> PmergeMe::getJacobsthalOrder(int n) {
     }
     return order;
 }
-
 
 // ─────────────────────────────────────────────
 //  Binary insert helpers
@@ -115,22 +118,157 @@ void PmergeMe::binaryInsertDeq(std::deque<int> &chain, int val, int end) {
 // ─────────────────────────────────────────────
 //  Ford-Johnson sort — std::vector
 // ─────────────────────────────────────────────
-
-
-void PmergeMe::fordJohnsonVec(std::vector<int> &seq) {}
-
-void PmergeMe::fordJohnsonDeq(std::deque<int> &seq) {}
-
-
-
-
+ 
+void PmergeMe::fordJohnsonVec(std::vector<int> &seq) {
+    int n = static_cast<int>(seq.size());
+    if (n <= 1)
+        return;
+ 
+    // ── Step 1: pair up, store as (winner, loser) to survive recursion ────
+    bool hasStraggler = (n % 2 != 0);
+    int  straggler    = hasStraggler ? seq[n - 1] : 0;
+ 
+    std::vector<std::pair<int,int> > pairs;
+    int limit = n - (hasStraggler ? 1 : 0);
+    for (int i = 0; i + 1 < limit; i += 2) {
+        if (seq[i] >= seq[i + 1])
+            pairs.push_back(std::make_pair(seq[i], seq[i + 1]));
+        else
+            pairs.push_back(std::make_pair(seq[i + 1], seq[i]));
+    }
+ 
+    // ── Step 2: extract winners and sort them recursively ─────────────────
+    std::vector<int> winners;
+    for (size_t i = 0; i < pairs.size(); ++i)
+        winners.push_back(pairs[i].first);
+ 
+    fordJohnsonVec(winners); // winners is now sorted
+ 
+    // ── Step 3: re-match sorted winners back to their losers ─────────────
+    // pairs[] still holds original (winner, loser) bonds.
+    // Walk sorted winners and find each one's loser in pairs[].
+    std::vector<std::pair<int,int> > sortedPairs;
+    std::vector<std::pair<int,int> > remaining = pairs;
+    for (size_t i = 0; i < winners.size(); ++i) {
+        for (size_t j = 0; j < remaining.size(); ++j) {
+            if (remaining[j].first == winners[i]) {
+                sortedPairs.push_back(remaining[j]);
+                remaining.erase(remaining.begin() + j);
+                break;
+            }
+        }
+    }
+ 
+    // ── Step 4: main chain = losers[0] prepended to sorted winners ────────
+    std::vector<int> chain;
+    chain.push_back(sortedPairs[0].second);
+    for (size_t i = 0; i < sortedPairs.size(); ++i)
+        chain.push_back(sortedPairs[i].first);
+ 
+    // ── Step 5: insert remaining losers in Jacobsthal order ───────────────
+    int pendCount = static_cast<int>(sortedPairs.size()) - 1;
+    if (pendCount > 0) {
+        std::vector<int> order = getJacobsthalOrder(pendCount);
+        for (size_t k = 0; k < order.size(); ++k) {
+            int idx       = order[k];                    // 1-based
+            int val       = sortedPairs[idx].second;     // loser to insert
+            int winnerVal = sortedPairs[idx].first;      // its paired winner in chain
+ 
+            int bound = static_cast<int>(
+                std::lower_bound(chain.begin(), chain.end(), winnerVal) - chain.begin()
+            ) + 1;
+ 
+            binaryInsertVec(chain, val, bound);
+        }
+    }
+ 
+    // ── Step 6: handle odd straggler ──────────────────────────────────────
+    if (hasStraggler)
+        binaryInsertVec(chain, straggler, static_cast<int>(chain.size()));
+ 
+    seq = chain;
+}
+ 
+// ─────────────────────────────────────────────
+//  Ford-Johnson sort — std::deque
+//  (intentionally not templated — separate implementation as required)
+// ─────────────────────────────────────────────
+ 
+void PmergeMe::fordJohnsonDeq(std::deque<int> &seq) {
+    int n = static_cast<int>(seq.size());
+    if (n <= 1)
+        return;
+ 
+    // ── Step 1: pair up, store as (winner, loser) to survive recursion ────
+    bool hasStraggler = (n % 2 != 0);
+    int  straggler    = hasStraggler ? seq[n - 1] : 0;
+ 
+    std::deque<std::pair<int,int> > pairs;
+    int limit = n - (hasStraggler ? 1 : 0);
+    for (int i = 0; i + 1 < limit; i += 2) {
+        if (seq[i] >= seq[i + 1])
+            pairs.push_back(std::make_pair(seq[i], seq[i + 1]));
+        else
+            pairs.push_back(std::make_pair(seq[i + 1], seq[i]));
+    }
+ 
+    // ── Step 2: extract winners and sort them recursively ─────────────────
+    std::deque<int> winners;
+    for (size_t i = 0; i < pairs.size(); ++i)
+        winners.push_back(pairs[i].first);
+ 
+    fordJohnsonDeq(winners);
+ 
+    // ── Step 3: re-match sorted winners back to their losers ──────────────
+    std::deque<std::pair<int,int> > sortedPairs;
+    std::deque<std::pair<int,int> > remaining = pairs;
+    for (size_t i = 0; i < winners.size(); ++i) {
+        for (size_t j = 0; j < remaining.size(); ++j) {
+            if (remaining[j].first == winners[i]) {
+                sortedPairs.push_back(remaining[j]);
+                remaining.erase(remaining.begin() + j);
+                break;
+            }
+        }
+    }
+ 
+    // ── Step 4: main chain = loser[0] prepended to sorted winners ─────────
+    std::deque<int> chain;
+    chain.push_back(sortedPairs[0].second);
+    for (size_t i = 0; i < sortedPairs.size(); ++i)
+        chain.push_back(sortedPairs[i].first);
+ 
+    // ── Step 5: insert remaining losers in Jacobsthal order ───────────────
+    int pendCount = static_cast<int>(sortedPairs.size()) - 1;
+    if (pendCount > 0) {
+        std::vector<int> order = getJacobsthalOrder(pendCount);
+        for (size_t k = 0; k < order.size(); ++k) {
+            int idx       = order[k];
+            int val       = sortedPairs[idx].second;
+            int winnerVal = sortedPairs[idx].first;
+ 
+            int bound = static_cast<int>(
+                std::lower_bound(chain.begin(), chain.end(), winnerVal) - chain.begin()
+            ) + 1;
+ 
+            binaryInsertDeq(chain, val, bound);
+        }
+    }
+ 
+    // ── Step 6: handle odd straggler ──────────────────────────────────────
+    if (hasStraggler)
+        binaryInsertDeq(chain, straggler, static_cast<int>(chain.size()));
+ 
+    seq = chain;
+}
 
 // ─────────────────────────────────────────────
-//  Sorting
+//  sort() — time both algorithms
 // ─────────────────────────────────────────────
 
 static double elapsedUs(struct timespec &start, struct timespec &end) {
-    return (end.tv_sec -  start.tv_sec) * 1e6 + (end.tv_nsec - start.tv_nsec) / 1e3;
+    return (end.tv_sec  - start.tv_sec)  * 1e6
+         + (end.tv_nsec - start.tv_nsec) / 1e3;
 }
 
 void PmergeMe::sort() {
@@ -149,9 +287,8 @@ void PmergeMe::sort() {
     _deqTime = elapsedUs(t0, t1);
 }
 
-
 // ─────────────────────────────────────────────
-//  Display
+//  display()
 // ─────────────────────────────────────────────
 
 void PmergeMe::display() const {
