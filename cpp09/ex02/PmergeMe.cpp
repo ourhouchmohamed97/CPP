@@ -1,10 +1,4 @@
 #include "PmergeMe.hpp"
-#include <iostream>
-#include <sstream>
-#include <stdexcept>
-#include <climits>
-#include <ctime>
-#include <algorithm>
 
 PmergeMe::PmergeMe() : _vecTime(0.0), _deqTime(0.0) {}
  
@@ -67,21 +61,19 @@ void PmergeMe::parseInput(int argc, char **argv) {
 // ─────────────────────────────────────────────
 
 std::vector<int> PmergeMe::getJacobsthalOrder(int n) {
-    // Build Jacobsthal sequence up to the first value > n
     std::vector<int> jacob;
     jacob.push_back(0);
     jacob.push_back(1);
     while (jacob.back() < n)
         jacob.push_back(jacob[jacob.size()-1] + 2 * jacob[jacob.size()-2]);
 
-    // Walk through groups: each group is [prev+1 .. curr] inserted backwards
     std::vector<int> order;
     for (size_t k = 1; k < jacob.size(); ++k) {
-        int hi = std::min(jacob[k], n);   // clamp to actual pend size
-        int lo = jacob[k-1] + 1;
-        for (int idx = hi; idx >= lo; --idx)
+        int high = std::min(jacob[k], n);
+        int low = jacob[k-1] + 1;
+        for (int idx = high; idx >= low; --idx)
             order.push_back(idx);
-        if (hi >= n) break;
+        if (high >= n) break;
     }
     return order;
 }
