@@ -119,7 +119,7 @@ void PmergeMe::fordJohnsonVec(std::vector<int> &seq) {
     // ── Step 1: pair up, store as (winner, loser) to survive recursion ────
     bool hasStraggler = (n % 2 != 0);
     int  straggler    = hasStraggler ? seq[n - 1] : 0;
- 
+
     std::vector<std::pair<int,int> > pairs;
     int limit = n - (hasStraggler ? 1 : 0);
     for (int i = 0; i + 1 < limit; i += 2) {
