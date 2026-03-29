@@ -1,12 +1,16 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange()
-{
+BitcoinExchange::BitcoinExchange() {}
+
+BitcoinExchange::BitcoinExchange( const BitcoinExchange& other ) : _database(other._database) {}
+
+BitcoinExchange& BitcoinExchange::operator=( const BitcoinExchange& other ) {
+    if (this != &other)
+        _database = other._database;
+    return *this;
 }
 
-BitcoinExchange::~BitcoinExchange()
-{
-}
+BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::loadDB( const std::string& DB ) {
     std::ifstream file(DB.c_str());
