@@ -76,32 +76,31 @@ std::vector<int> PmergeMe::getJacobsthalOrder(int n) {
 }
 
 // ─────────────────────────────────────────────
-//  Binary insert helpers
-//  Insert `val` into chain[0..end-1] (end is the exclusive upper bound).
+//  Binary insert
 // ─────────────────────────────────────────────
 
 void PmergeMe::binaryInsertVec(std::vector<int> &chain, int val, int end) {
-    int lo = 0, hi = end;
-    while (lo < hi) {
-        int mid = lo + (hi - lo) / 2;
+    int left = 0, right = end;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
         if (chain[mid] < val)
-            lo = mid + 1;
+            left = mid + 1;
         else
-            hi = mid;
+            right = mid;
     }
-    chain.insert(chain.begin() + lo, val);
+    chain.insert(chain.begin() + left, val);
 }
 
 void PmergeMe::binaryInsertDeq(std::deque<int> &chain, int val, int end) {
-    int lo = 0, hi = end;
-    while (lo < hi) {
-        int mid = lo + (hi - lo) / 2;
+    int left = 0, right = end;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
         if (chain[mid] < val)
-            lo = mid + 1;
+            left = mid + 1;
         else
-            hi = mid;
+            right = mid;
     }
-    chain.insert(chain.begin() + lo, val);
+    chain.insert(chain.begin() + left, val);
 }
 
 // ─────────────────────────────────────────────
