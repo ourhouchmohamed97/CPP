@@ -57,9 +57,6 @@ void BitcoinExchange::processInput(const std::string& input)
 
     while (std::getline(file, line))
     {
-        if (!line.empty() && line[line.size() - 1] == '\r')
-            line.erase(line.size() - 1);
-
         size_t pipePos = line.find('|');
 
         if (pipePos == std::string::npos)
