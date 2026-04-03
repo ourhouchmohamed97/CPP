@@ -41,8 +41,10 @@ int RPN::ExpressionEvaluator(const std::string &expression)
             if (_stack.size() < 2)
                 throw std::runtime_error("Error");
 
-            int b = _stack.top(); _stack.pop();
-            int a = _stack.top(); _stack.pop();
+            int b = _stack.top();
+            _stack.pop();
+            int a = _stack.top();
+            _stack.pop();
 
             if (expression[i] == '+')
                 _stack.push(a + b);
@@ -57,7 +59,7 @@ int RPN::ExpressionEvaluator(const std::string &expression)
                 _stack.push(a / b);
             }
             else
-                throw std::runtime_error("Error"); // unknown character
+                throw std::runtime_error("Error");
         }
     }
 
