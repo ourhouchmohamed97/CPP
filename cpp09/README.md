@@ -50,6 +50,7 @@ make
 make
 ./PmergeMe file.txt
 ```
+---
 
 ## Author
 Mohamed OURHOUCH  
